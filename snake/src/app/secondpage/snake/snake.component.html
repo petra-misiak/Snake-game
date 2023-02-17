@@ -1,0 +1,40 @@
+<div class="snake">
+  <div class="snake-game">
+    <ngx-snake #game></ngx-snake>
+  </div>
+  <div class="buttons">
+    <div class="buttons-start">
+      <button class="buttons-start-1" (click)="game.actionStart()">
+        START
+      </button>
+      <button class="buttons-start-1" (click)="game.actionStop()">STOP</button>
+    </div>
+    <div class="buttons-up">
+      <div class="buttons-up-first">
+        <button class="buttons-up-first-up" (click)="game.actionUp()">
+          Up
+        </button>
+      </div>
+
+      <div class="buttons-up-sides">
+        <button class="buttons-up-sides-all" (click)="game.actionLeft()">
+          Left
+        </button>
+        <button class="buttons-up-sides-all" (click)="game.actionRight()">
+          Right
+        </button>
+      </div>
+      <div class="buttons-up-second">
+        <button class="buttons-up-second-down" (click)="game.actionDown()">
+          Down
+        </button>
+      </div>
+    </div>
+    <div class="buttons-exit">
+      <button class="buttons-exit-reset" (click)="game.actionReset()">
+        RESET
+      </button>
+      <button class="buttons-exit-exit">EXIT</button>
+    </div>
+  </div>
+</div>

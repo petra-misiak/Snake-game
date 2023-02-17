@@ -1,0 +1,77 @@
+.snake {
+  &-game {
+    display: flex;
+    justify-content: center;
+  }
+}
+.buttons {
+  &-start {
+    display: flex;
+    justify-content: center;
+    &-1 {
+      border: none;
+      font-size: 25px;
+      color: white;
+      font-weight: 600;
+      background-color: #7b9c01;
+      padding: 15px 20px;
+    }
+  }
+  &-up {
+    &-first {
+      display: flex;
+      justify-content: center;
+      &-up {
+        border: none;
+        font-size: 25px;
+        color: white;
+        font-weight: 600;
+        background-color: #7b9c01;
+        //   padding: 40px;
+      }
+    }
+    &-second {
+      display: flex;
+      justify-content: center;
+      &-down {
+        border: none;
+        font-size: 25px;
+        color: white;
+        font-weight: 600;
+        background-color: #7b9c01;
+        // padding: 40px;
+      }
+    }
+    &-sides {
+      display: flex;
+      justify-content: space-evenly;
+      &-all {
+        border: none;
+        font-size: 25px;
+        color: white;
+        font-weight: 600;
+        background-color: #7b9c01;
+        // padding: 40px;
+      }
+    }
+  }
+  &-exit {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+    &-reset {
+      border: none;
+      font-size: 25px;
+      color: white;
+      font-weight: 600;
+      background-color: #7b9c01;
+    }
+    &-exit {
+      border: none;
+      font-size: 25px;
+      color: white;
+      font-weight: 600;
+      background-color: #7b9c01;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<form #form="ngForm" class="form" (ngSubmit)="onSubmit(form)">
+  <div class="form-control">
+    <div class="form-control-name">
+      <label class="form-control-name-label" for="name">PLAYER NAME: </label>
+      <div
+        class="form-control-name-alert"
+        *ngIf="nameField.errors?.['required'] && nameField.touched || form.submitted && nameField.invalid"
+      >
+        ENTER YOUR PLAYER NAME
+      </div>
+      <div
+        class="form-control-name-alert"
+        *ngIf="nameField.errors?.['pattern']"
+      >
+        NO SPECIAL CHARACTERS
+      </div>
+    </div>
+    <div class="form-control-input">
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="formData.name"
+        required
+        #nameField="ngModel"
+        pattern="/^[a-zA-Z]+/"
+        id="name"
+        class="form-control-input-name"
+      />
+    </div>
+
+    <div class="form-control-info">
+      <div class="form-control-info-i">
+        (letters and numbers only, no punctuacion or special characters)
+      </div>
+    </div>
+    <div class="form-control-token">
+      <label class="form-control-token-label" for="token">TOKEN: </label>
+      <div
+        class="form-control-token-alert"
+        *ngIf="tokenField.errors?.['required'] && tokenField.touched || form.submitted && tokenField.invalid"
+      >
+        ENTER YOUR TOKEN
+      </div>
+    </div>
+    <div class="form-control-input2">
+      <input
+        type="number"
+        name="token"
+        #tokenField="ngModel"
+        [(ngModel)]="formData.token"
+        required
+        id="token"
+        class="form-control-input2-token"
+      />
+    </div>
+    <div class="form-control-btn">
+      <button class="form-control-btn-go" (click)="onSubmit(form)">
+        GO !!!
+      </button>
+    </div>
+  </div>
+  <div class="form-control-img">
+    <img
+      src="../assets/snake.png.png"
+      alt="snake"
+      class="form-control-img-snake"
+    />
+  </div>
+</form>
+
+<!-- disabled="!formData.name || !formData.token" -->

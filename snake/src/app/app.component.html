@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="container-header">
+    <app-header class="container-header-title"></app-header>
+    <div class="container-form">
+      <div class="container-form-app">
+        <app-form
+          (submit)="onSubmitted($event)"
+          [hidden]="state === 'game'"
+        ></app-form>
+        <div><app-snake [hidden]="state !== 'game'"></app-snake></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- (submitted)="startGame($event)" -->
