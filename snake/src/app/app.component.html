@@ -7,9 +7,13 @@
           (submit)="onSubmitted($event)"
           [hidden]="state === 'game'"
         ></app-form>
-        <div><app-snake [hidden]="state !== 'game'"></app-snake></div>
+        <div>
+          <app-snake
+            [hidden]="state !== 'game'"
+            (exit)="exitGameClicked($event)"
+          ></app-snake>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<!-- (submitted)="startGame($event)" -->

@@ -8,7 +8,6 @@ import { FormData } from '../data/form-data';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  // gameSnake: boolean = true;
   originalformData: FormData = {
     name: '',
     token: '',
@@ -22,6 +21,6 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit(form: NgForm) {
     this.submit.emit('game');
-    console.log('in onSubmit', form.valid);
+    // console.log('in onSubmit', form.valid);
   }
 }

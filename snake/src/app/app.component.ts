@@ -7,7 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public state = 'form';
+  public exit = true;
+
+  // public player: string = '';
   public onSubmitted(event: any) {
     this.state = 'game';
+  }
+  public exitGameClicked(event: boolean) {
+    this.exit = event;
+    console.log('exit');
   }
 }

@@ -1,4 +1,5 @@
 <div class="snake">
+  <h1>Good Luck</h1>
   <div class="snake-game">
     <ngx-snake #game></ngx-snake>
   </div>
@@ -34,7 +35,7 @@
       <button class="buttons-exit-reset" (click)="game.actionReset()">
         RESET
       </button>
-      <button class="buttons-exit-exit">EXIT</button>
+      <button class="buttons-exit-exit" (click)="exitGame()">EXIT</button>
     </div>
   </div>
 </div>
