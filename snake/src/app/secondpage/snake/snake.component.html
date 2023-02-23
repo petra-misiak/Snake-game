@@ -1,14 +1,35 @@
 <div class="snake">
-  <h1>Good Luck</h1>
+  <div class="snake-info">
+    <h1 class="snake-info-name">Good Luck Player</h1>
+    <div class="snake-info-timer">Time {{ seconds }}</div>
+    <div class="snake-info-status">Status {{ status }}</div>
+    <div class="snake-info-points">Points {{ points }}</div>
+  </div>
   <div class="snake-game">
-    <ngx-snake #game></ngx-snake>
+    <ngx-snake
+      #game
+      [boardHeight]="12"
+      [boardWidth]="12"
+      (gameOver)="gameOver()"
+      (foodEaten)="coutingPoints()"
+    ></ngx-snake>
   </div>
   <div class="buttons">
     <div class="buttons-start">
-      <button class="buttons-start-1" (click)="game.actionStart()">
+      <button
+        class="buttons-start-1"
+        (click)="game.actionStart()"
+        (click)="startTimer()"
+      >
         START
       </button>
-      <button class="buttons-start-1" (click)="game.actionStop()">STOP</button>
+      <button
+        class="buttons-start-1"
+        (click)="game.actionStop()"
+        (click)="stopTimer()"
+      >
+        STOP
+      </button>
     </div>
     <div class="buttons-up">
       <div class="buttons-up-first">
@@ -32,7 +53,11 @@
       </div>
     </div>
     <div class="buttons-exit">
-      <button class="buttons-exit-reset" (click)="game.actionReset()">
+      <button
+        class="buttons-exit-reset"
+        (click)="game.actionReset()"
+        (click)="resetTimer()"
+      >
         RESET
       </button>
       <button class="buttons-exit-exit" (click)="exitGame()">EXIT</button>

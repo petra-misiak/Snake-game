@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+export interface Player {
+  name: string;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,13 +11,20 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public state = 'form';
   public exit = true;
+  public PlayerName: Array<Player> = [];
 
-  // public player: string = '';
+  constructor() {}
+
+  public addPlayerName(data: Player) {
+    this.PlayerName.push({
+      name: data.name,
+    });
+  }
   public onSubmitted(event: any) {
     this.state = 'game';
   }
-  public exitGameClicked(event: boolean) {
-    this.exit = event;
+  public exitGameClicked() {
+    this.exit = false;
     console.log('exit');
   }
 }

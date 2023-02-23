@@ -9,6 +9,7 @@
         ></app-form>
         <div>
           <app-snake
+            [data]="PlayerName"
             [hidden]="state !== 'game'"
             (exit)="exitGameClicked($event)"
           ></app-snake>
@@ -17,3 +18,4 @@
     </div>
   </div>
 </div>
+<!-- (name)="addPlayerName($event)" -->

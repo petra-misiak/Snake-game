@@ -23,4 +23,9 @@ export class FormComponent implements OnInit {
     this.submit.emit('game');
     // console.log('in onSubmit', form.valid);
   }
+
+  // getValue(value: string) {
+  //   this.displayName = value;
+  //   console.warn();
+  // }
 }

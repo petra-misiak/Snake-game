@@ -1,4 +1,17 @@
 .snake {
+  &-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-name {
+    }
+    &-timer {
+    }
+    &-status {
+    }
+    &-points {
+    }
+  }
   &-game {
     display: flex;
     justify-content: center;
