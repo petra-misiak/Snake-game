@@ -12,20 +12,16 @@ export class FormComponent implements OnInit {
     name: '',
     token: '',
   };
+
   formData = { ...this.originalformData };
 
-  @Output() submit = new EventEmitter<any>();
+  @Output() submit = new EventEmitter<string>();
 
   constructor() {}
 
   ngOnInit(): void {}
   onSubmit(form: NgForm) {
-    this.submit.emit('game');
-    // console.log('in onSubmit', form.valid);
+    this.submit.emit(form.value.name);
+    console.log('in onSubmit', form.valid);
   }
-
-  // getValue(value: string) {
-  //   this.displayName = value;
-  //   console.warn();
-  // }
 }

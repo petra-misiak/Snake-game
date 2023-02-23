@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-import { Player } from '../../app.component';
+
 @Component({
   selector: 'app-snake',
   templateUrl: './snake.component.html',
@@ -7,11 +7,11 @@ import { Player } from '../../app.component';
 })
 export class SnakeComponent implements OnInit {
   public seconds: number = 0;
+  public points: number = 0;
   public interval: any;
   public status: any;
-  public points: number = 0;
 
-  @Input() public data: Array<Player> = [];
+  @Input() public data: string = ' ';
   @Output() exit = new EventEmitter<any>();
   constructor() {}
 
