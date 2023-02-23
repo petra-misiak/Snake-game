@@ -1,6 +1,8 @@
 <div class="snake">
   <div class="snake-info">
-    <h1 class="snake-info-name">Good Luck Player</h1>
+    <h1 class="snake-info-name" *ngFor="let item of data; let i = index">
+      Hi, {{ item.name }}
+    </h1>
     <div class="snake-info-timer">Time {{ seconds }}</div>
     <div class="snake-info-status">Status {{ status }}</div>
     <div class="snake-info-points">Points {{ points }}</div>

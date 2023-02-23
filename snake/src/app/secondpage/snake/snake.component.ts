@@ -12,7 +12,7 @@ export class SnakeComponent implements OnInit {
   public points: number = 0;
 
   @Input() public data: Array<Player> = [];
-  @Output() exit = new EventEmitter();
+  @Output() exit = new EventEmitter<any>();
   constructor() {}
 
   ngOnInit(): void {}

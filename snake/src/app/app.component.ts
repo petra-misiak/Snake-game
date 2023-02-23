@@ -10,7 +10,7 @@ export interface Player {
 })
 export class AppComponent {
   public state = 'form';
-  public exit = true;
+  // public exit = true;
   public PlayerName: Array<Player> = [];
 
   constructor() {}
@@ -24,7 +24,7 @@ export class AppComponent {
     this.state = 'game';
   }
   public exitGameClicked() {
-    this.exit = false;
+    this.state = 'form';
     console.log('exit');
   }
 }
