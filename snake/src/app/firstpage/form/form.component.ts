@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { FormData } from '../data/form-data';
-
+import { Router } from '@angular/router';
+import { PlayerDataService } from 'src/app/player-data.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -17,11 +18,16 @@ export class FormComponent implements OnInit {
 
   @Output() submit = new EventEmitter<string>();
 
-  constructor() {}
+  constructor(
+    private _router: Router,
+    private playerDataService: PlayerDataService
+  ) {}
 
   ngOnInit(): void {}
-  onSubmit(form: NgForm) {
-    this.submit.emit(form.value.name);
-    console.log('in onSubmit', form.valid);
+
+  openGame(form: NgForm) {
+    this.playerDataService.setUserInfo(form.value.name);
+    this._router.navigate(['/snake-game']);
+    form.resetForm();
   }
 }

@@ -3,19 +3,8 @@
     <app-header class="container-header-title"></app-header>
     <div class="container-form">
       <div class="container-form-app">
-        <app-form
-          (submit)="onSubmitted($event)"
-          [hidden]="state === 'game'"
-        ></app-form>
-        <div>
-          <app-snake
-            [data]="PlayerName"
-            [hidden]="state !== 'game'"
-            (exit)="exitGameClicked()"
-          ></app-snake>
-        </div>
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
 </div>
-<!-- (name)="addPlayerName($event)" -->

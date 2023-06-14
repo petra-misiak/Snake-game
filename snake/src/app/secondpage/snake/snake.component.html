@@ -1,6 +1,6 @@
 <div class="snake">
   <div class="snake-info">
-    <h1 class="snake-info-name">Good luck {{ data }}</h1>
+    <h1 class="snake-info-name">Good luck {{ name }}</h1>
     <div class="snake-info-timer">Time {{ seconds }}</div>
     <div class="snake-info-status">Status {{ status }}</div>
     <div class="snake-info-points">Points {{ points }}</div>
@@ -59,7 +59,7 @@
       >
         RESET
       </button>
-      <button class="buttons-exit-exit" (click)="exitGame()">EXIT</button>
+      <button class="buttons-exit-exit" (click)="returnLogin()">EXIT</button>
     </div>
   </div>
 </div>

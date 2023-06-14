@@ -1,10 +1,10 @@
-<form #form="ngForm" class="form" (ngSubmit)="onSubmit(form)">
+<form #form="ngForm" class="form" (ngSubmit)="openGame(form)">
   <div class="form-control">
     <div class="form-control-name">
       <label class="form-control-name-label" for="name">PLAYER NAME: </label>
       <div
         class="form-control-name-alert"
-        *ngIf="nameField.errors?.['required'] && nameField.touched || form.submitted && nameField.invalid"
+        *ngIf="nameField.errors?.['required'] && nameField.touched|| form.submitted && nameField.invalid"
       >
         ENTER YOUR PLAYER NAME
       </div>
@@ -37,7 +37,7 @@
       <label class="form-control-token-label" for="token">TOKEN: </label>
       <div
         class="form-control-token-alert"
-        *ngIf="tokenField.errors?.['required'] && tokenField.touched || form.submitted && tokenField.invalid"
+        *ngIf="tokenField.errors?.['required'] && tokenField.touched || form.submitted && tokenField.invalid  "
       >
         ENTER YOUR TOKEN
       </div>
@@ -58,7 +58,7 @@
       <button
         class="form-control-btn-go"
         [disabled]="!formData.name || !formData.token"
-        (click)="onSubmit(form)"
+        (click)="openGame(form)"
       >
         GO !!!
       </button>
@@ -72,3 +72,7 @@
     />
   </div>
 </form>
+<!-- *ngIf="nameField.errors?.['required'] && nameField.touched|| form.submitted && nameField.invalid" -->
+<!-- *ngIf="!nameField.valid && (nameField.touched || submit)" -->
+
+<!-- *ngIf="nameField.errors?.['required'] && (nameField.touched|| submit)" -->

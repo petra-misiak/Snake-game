@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor() {}
 
-  public onSubmitted(event: any) {
+  public onSubmitted(event: string) {
     this.state = 'game';
     if (typeof event === 'string') {
       this.PlayerName = event;

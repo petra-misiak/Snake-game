@@ -1,21 +1,43 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { PlayerDataService } from 'src/app/player-data.service';
 @Component({
   selector: 'app-snake',
   templateUrl: './snake.component.html',
   styleUrls: ['./snake.component.scss'],
 })
 export class SnakeComponent implements OnInit {
+  load() {
+    const headers = new HttpHeaders({
+      Accept: 'application/json',
+    });
+    return this._http
+      .get('https://scores.chrum.it/snake', {
+        headers,
+      })
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
+
   public seconds: number = 0;
   public points: number = 0;
   public interval: any;
   public status: any;
+  public name: string = '';
 
-  @Input() public data: string = ' ';
+  @Input() public data: string = '  ';
   @Output() exit = new EventEmitter<any>();
-  constructor() {}
+  constructor(
+    private _router: Router,
+    private playerDataService: PlayerDataService,
+    private _http: HttpClient
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name = this.playerDataService.getUserInfo();
+  }
 
   public startTimer() {
     this.interval = setInterval(() => {
@@ -51,5 +73,8 @@ export class SnakeComponent implements OnInit {
 
   public exitGame() {
     this.exit.emit();
+  }
+  returnLogin() {
+    this._router.navigate(['/login']);
   }
 }
