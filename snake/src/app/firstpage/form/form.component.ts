@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { FormData } from '../data/form-data';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlayerDataService } from 'src/app/player-data.service';
 @Component({
   selector: 'app-form',
@@ -15,13 +15,20 @@ export class FormComponent implements OnInit {
   };
 
   formData = { ...this.originalformData };
+  public selectedColorPalette: string = 'normal';
+  public allColors = ['lightgreen', 'green'];
 
   @Output() submit = new EventEmitter<string>();
 
   constructor(
     private _router: Router,
-    private playerDataService: PlayerDataService
-  ) {}
+    private playerDataService: PlayerDataService,
+    private _route: ActivatedRoute
+  ) {
+    this._route.params.subscribe((params) => {
+      this.selectedColorPalette = params['colors'] || 'normal';
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -29,5 +36,9 @@ export class FormComponent implements OnInit {
     this.playerDataService.setUserInfo(form.value.name);
     this._router.navigate(['/snake-game']);
     form.resetForm();
+  }
+
+  public changeColor(event: any): void {
+    this.selectedColorPalette = event.target.value;
   }
 }

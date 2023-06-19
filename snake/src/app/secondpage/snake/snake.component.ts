@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerDataService } from 'src/app/player-data.service';
 @Component({
   selector: 'app-snake',
@@ -13,30 +13,44 @@ export class SnakeComponent implements OnInit {
       Accept: 'application/json',
     });
     return this._http
-      .get('https://scores.chrum.it/snake', {
+      .get<any>('https://scores.chrum.it/snake', {
         headers,
       })
       .subscribe((response) => {
+        this.info = response
+          .sort((a: any, b: any) => b.score - a.score)
+          .slice(0, 10);
         console.log(response);
       });
   }
 
   public seconds: number = 0;
-  public points: number = 0;
+  public points: number[] = [];
+  public snakePoints: number = 0;
   public interval: any;
   public status: any;
   public name: string = '';
+  public info: any;
+  public sorting: 'ASC' | 'DESC' = 'ASC';
+  public selectedColorPalette: string = '';
+  public allColors = ['lightgreen', 'green'];
 
   @Input() public data: string = '  ';
   @Output() exit = new EventEmitter<any>();
   constructor(
     private _router: Router,
     private playerDataService: PlayerDataService,
-    private _http: HttpClient
-  ) {}
+    private _http: HttpClient,
+    private _route: ActivatedRoute
+  ) {
+    this._route.params.subscribe((params) => {
+      this.selectedColorPalette = params['colors'];
+    });
+  }
 
   ngOnInit(): void {
     this.name = this.playerDataService.getUserInfo();
+    this.load();
   }
 
   public startTimer() {
@@ -59,7 +73,7 @@ export class SnakeComponent implements OnInit {
     this.seconds = 0;
     clearInterval(this.interval);
     this.status = ['Ready'];
-    this.points = 0;
+    this.points = [];
   }
 
   public gameOver() {
@@ -68,11 +82,25 @@ export class SnakeComponent implements OnInit {
   }
 
   public coutingPoints() {
-    this.points++;
+    this.snakePoints++;
   }
-
   public exitGame() {
     this.exit.emit();
+  }
+
+  public sortPoints() {
+    if (this.sorting === 'ASC') {
+      this.info.sort((a: any, b: any) => a.score - b.score);
+    } else if (this.sorting === 'DESC') {
+      this.info.sort((a: any, b: any) => b.score - a.score);
+    }
+  }
+
+  public changeColor(event: any): void {
+    const colors = event.target.value;
+    this._router.navigate(['/snake-game', colors], {
+      relativeTo: this._route,
+    });
   }
   returnLogin() {
     this._router.navigate(['/login']);

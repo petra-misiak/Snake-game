@@ -9,18 +9,19 @@ import { NgxSnakeModule } from 'ngx-snake';
 import { HeaderComponent } from './firstpage/header/header.component';
 import { FormComponent } from './firstpage/form/form.component';
 import { SnakeComponent } from './secondpage/snake/snake.component';
-import { HighscoresComponent } from './highscores/highscores.component';
-
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FormComponent, SnakeComponent, HighscoresComponent],
+  declarations: [AppComponent, HeaderComponent, FormComponent, SnakeComponent],
   imports: [
     BrowserModule,
     NgxSnakeModule,
     FormsModule,
     HttpClientModule,
+
     RouterModule.forRoot([
       { path: 'login', component: FormComponent },
+      { path: 'login/:color', component: FormComponent },
       { path: 'snake-game', component: SnakeComponent },
+      { path: 'snake-game/:color', component: SnakeComponent },
       { path: '**', redirectTo: 'login' },
     ]),
   ],

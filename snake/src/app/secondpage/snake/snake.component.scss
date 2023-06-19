@@ -1,7 +1,7 @@
 .snake {
   &-info {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     &-name {
     }
@@ -14,10 +14,11 @@
   }
   &-game {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 }
 .buttons {
+  width: 60%;
   &-start {
     display: flex;
     justify-content: center;
@@ -85,6 +86,16 @@
       color: white;
       font-weight: 600;
       background-color: #7b9c01;
+    }
+  }
+}
+ngx-snake {
+  ngx-snake-tile {
+    background: #ffffff;
+    &.free {
+      div {
+        background: #ffffff;
+      }
     }
   }
 }

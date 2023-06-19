@@ -3,7 +3,7 @@
     <h1 class="snake-info-name">Good luck {{ name }}</h1>
     <div class="snake-info-timer">Time {{ seconds }}</div>
     <div class="snake-info-status">Status {{ status }}</div>
-    <div class="snake-info-points">Points {{ points }}</div>
+    <div class="snake-info-points">Points {{ snakePoints }}</div>
   </div>
   <div class="snake-game">
     <ngx-snake
@@ -13,6 +13,18 @@
       (gameOver)="gameOver()"
       (foodEaten)="coutingPoints()"
     ></ngx-snake>
+
+    <div>
+      <h2>Highscores:</h2>
+      <select [(ngModel)]="sorting" (ngModelChange)="sortPoints()">
+        <option value="ASC">Ascending order</option>
+        <option value="DESC">Descending order</option>
+      </select>
+      <tr *ngFor="let item of info">
+        <td>{{ item.name }}</td>
+        <td>{{ item.score }}</td>
+      </tr>
+    </div>
   </div>
   <div class="buttons">
     <div class="buttons-start">
@@ -51,15 +63,23 @@
         </button>
       </div>
     </div>
-    <div class="buttons-exit">
-      <button
-        class="buttons-exit-reset"
-        (click)="game.actionReset()"
-        (click)="resetTimer()"
-      >
-        RESET
-      </button>
-      <button class="buttons-exit-exit" (click)="returnLogin()">EXIT</button>
-    </div>
+  </div>
+  <div class="buttons-exit">
+    <button
+      class="buttons-exit-reset"
+      (click)="game.actionReset()"
+      (click)="resetTimer()"
+    >
+      RESET
+    </button>
+    <button class="buttons-exit-exit" (click)="returnLogin()">EXIT</button>
+  </div>
+  <div>
+    <p>Dark or light mode?</p>
+    <select [(ngModel)]="selectedColorPalette" (change)="changeColor($event)">
+      <option *ngFor="let color of allColors" [value]="color">
+        {{ color }}
+      </option>
+    </select>
   </div>
 </div>

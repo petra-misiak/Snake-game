@@ -71,8 +71,12 @@
       class="form-control-img-snake"
     />
   </div>
+  <div class="form-control-input-name-color">
+    <p>Dark or light mode?</p>
+    <select [(ngModel)]="selectedColorPalette" (change)="changeColor($event)">
+      <option *ngFor="let color of allColors" [value]="color">
+        {{ color }}
+      </option>
+    </select>
+  </div>
 </form>
-<!-- *ngIf="nameField.errors?.['required'] && nameField.touched|| form.submitted && nameField.invalid" -->
-<!-- *ngIf="!nameField.valid && (nameField.touched || submit)" -->
-
-<!-- *ngIf="nameField.errors?.['required'] && (nameField.touched|| submit)" -->
