@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerDataService } from 'src/app/player-data.service';
+import { Renderer2 } from '@angular/core';
+
 @Component({
   selector: 'app-snake',
   templateUrl: './snake.component.html',
@@ -34,6 +36,7 @@ export class SnakeComponent implements OnInit {
   public sorting: 'ASC' | 'DESC' = 'ASC';
   public selectedColorPalette: string = '';
   public allColors = ['lightgreen', 'green'];
+  public colorPalette: string = 'normal';
 
   @Input() public data: string = '  ';
   @Output() exit = new EventEmitter<any>();
@@ -41,7 +44,8 @@ export class SnakeComponent implements OnInit {
     private _router: Router,
     private playerDataService: PlayerDataService,
     private _http: HttpClient,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private renderer: Renderer2
   ) {
     this._route.params.subscribe((params) => {
       this.selectedColorPalette = params['colors'];
@@ -51,6 +55,19 @@ export class SnakeComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.playerDataService.getUserInfo();
     this.load();
+    this._route.queryParams.subscribe((params) => {
+      this.colorPalette = params['palette'] || 'normal';
+    });
+  }
+
+  public updateColorPalette(palette: string): void {
+    this.colorPalette = palette;
+
+    if (this.colorPalette === 'high-contrast') {
+      this.renderer.addClass(document.body, 'high-contrast');
+    } else {
+      this.renderer.removeClass(document.body, 'high-contrast');
+    }
   }
 
   public startTimer() {
@@ -96,13 +113,21 @@ export class SnakeComponent implements OnInit {
     }
   }
 
-  public changeColor(event: any): void {
-    const colors = event.target.value;
-    this._router.navigate(['/snake-game', colors], {
+  public changeColorPalette(event: any): void {
+    const palette = event.target.value;
+    this._router.navigate(['/snake-game'], {
+      queryParams: { palette },
       relativeTo: this._route,
     });
   }
+
   returnLogin() {
     this._router.navigate(['/login']);
   }
 }
+// public changeColor(event: any): void {
+//   const colors = event.target.value;
+//   this._router.navigate(['/snake-game', colors], {
+//     relativeTo: this._route,
+//   });
+// }

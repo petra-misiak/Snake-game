@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public state = 'form';
   public PlayerName: string = '';
+  public selectedColorPalette: string = 'normal';
 
   constructor() {}
 
@@ -20,5 +21,8 @@ export class AppComponent {
   public exitGameClicked() {
     this.state = 'form';
     console.log('exit');
+  }
+  public changeColorPalette(event: any): void {
+    this.selectedColorPalette = event.target.value;
   }
 }

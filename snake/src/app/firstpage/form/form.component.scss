@@ -1,5 +1,13 @@
 .form {
   // background-color: #7b9c01;
+  .normal {
+    background-color: white;
+    color: #7b9c01;
+  }
+  .high-contrast {
+    background-color: red;
+    color: white;
+  }
   &-control {
     position: relative;
     &-name {
@@ -34,11 +42,6 @@
         width: 20%;
         padding: 20px 0 0 0;
         color: white;
-
-        // &-color {
-        //   background-color: lightgreen;
-        //   color: #7b9c01;
-        // }
       }
     }
     &-info {
@@ -106,9 +109,3 @@
     }
   }
 }
-// select {
-//   background-color: lightgreen;
-// }
-// option {
-//   background-color: green;
-// }

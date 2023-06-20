@@ -38,7 +38,11 @@ export class FormComponent implements OnInit {
     form.resetForm();
   }
 
-  public changeColor(event: any): void {
-    this.selectedColorPalette = event.target.value;
+  public changeColorPalette(event: any): void {
+    const colorPalette = event.target.value;
+    this._router.navigate(['/login'], {
+      queryParams: { palette: colorPalette },
+      relativeTo: this._route,
+    });
   }
 }

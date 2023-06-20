@@ -71,12 +71,17 @@
       class="form-control-img-snake"
     />
   </div>
-  <div class="form-control-input-name-color">
+  <div>
     <p>Dark or light mode?</p>
-    <select [(ngModel)]="selectedColorPalette" (change)="changeColor($event)">
-      <option *ngFor="let color of allColors" [value]="color">
-        {{ color }}
-      </option>
+    <select (change)="changeColorPalette($event)">
+      <option value="normal">Normal</option>
+      <option value="high-contrast">High Contrast</option>
     </select>
   </div>
 </form>
+
+<!-- <select [(ngModel)]="selectedColorPalette" (change)="changeColor($event.target.value)">
+  <option *ngFor="let color of allColors" [value]="color">
+    {{ color }}
+  </option>
+</select> -->

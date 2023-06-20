@@ -76,7 +76,10 @@
   </div>
   <div>
     <p>Dark or light mode?</p>
-    <select [(ngModel)]="selectedColorPalette" (change)="changeColor($event)">
+    <select
+      [(ngModel)]="selectedColorPalette"
+      (change)="changeColorPalette($event)"
+    >
       <option *ngFor="let color of allColors" [value]="color">
         {{ color }}
       </option>
