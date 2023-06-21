@@ -55,7 +55,8 @@ export class SnakeComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.playerDataService.getUserInfo();
     this.load();
-    this._route.queryParams.subscribe((params) => {
+    this._route.params.subscribe((params) => {
+      console.log(params);
       this.colorPalette = params['palette'] || 'normal';
     });
   }
@@ -115,8 +116,7 @@ export class SnakeComponent implements OnInit {
 
   public changeColorPalette(event: any): void {
     const palette = event.target.value;
-    this._router.navigate(['/snake-game'], {
-      queryParams: { palette },
+    this._router.navigate(['/snake-game', palette], {
       relativeTo: this._route,
     });
   }

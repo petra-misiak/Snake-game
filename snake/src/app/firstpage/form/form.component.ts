@@ -39,9 +39,8 @@ export class FormComponent implements OnInit {
   }
 
   public changeColorPalette(event: any): void {
-    const colorPalette = event.target.value;
-    this._router.navigate(['/login'], {
-      queryParams: { palette: colorPalette },
+    const palette = event.target.value;
+    this._router.navigate(['/login', palette], {
       relativeTo: this._route,
     });
   }
