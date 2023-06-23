@@ -1,13 +1,4 @@
 .form {
-  // background-color: #7b9c01;
-  .normal {
-    background-color: white;
-    color: #7b9c01;
-  }
-  .high-contrast {
-    background-color: red;
-    color: white;
-  }
   &-control {
     position: relative;
     &-name {
@@ -108,4 +99,12 @@
       }
     }
   }
+}
+.normal {
+  background-color: #7b9c01;
+  color: black;
+}
+.high-contrast {
+  background-color: black;
+  color: white;
 }

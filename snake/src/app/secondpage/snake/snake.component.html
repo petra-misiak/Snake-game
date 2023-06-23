@@ -13,7 +13,6 @@
       (gameOver)="gameOver()"
       (foodEaten)="coutingPoints()"
     ></ngx-snake>
-
     <div>
       <h2>Highscores:</h2>
       <select [(ngModel)]="sorting" (ngModelChange)="sortPoints()">
@@ -30,6 +29,7 @@
     <div class="buttons-start">
       <button
         class="buttons-start-1"
+        [ngClass]="selectedColorPalette"
         (click)="game.actionStart()"
         (click)="startTimer()"
       >
@@ -37,6 +37,7 @@
       </button>
       <button
         class="buttons-start-1"
+        [ngClass]="selectedColorPalette"
         (click)="game.actionStop()"
         (click)="stopTimer()"
       >
@@ -45,20 +46,36 @@
     </div>
     <div class="buttons-up">
       <div class="buttons-up-first">
-        <button class="buttons-up-first-up" (click)="game.actionUp()">
+        <button
+          class="buttons-up-first-up"
+          [ngClass]="selectedColorPalette"
+          (click)="game.actionUp()"
+        >
           Up
         </button>
       </div>
       <div class="buttons-up-sides">
-        <button class="buttons-up-sides-all" (click)="game.actionLeft()">
+        <button
+          class="buttons-up-sides-all"
+          [ngClass]="selectedColorPalette"
+          (click)="game.actionLeft()"
+        >
           Left
         </button>
-        <button class="buttons-up-sides-all" (click)="game.actionRight()">
+        <button
+          class="buttons-up-sides-all"
+          [ngClass]="selectedColorPalette"
+          (click)="game.actionRight()"
+        >
           Right
         </button>
       </div>
       <div class="buttons-up-second">
-        <button class="buttons-up-second-down" (click)="game.actionDown()">
+        <button
+          class="buttons-up-second-down"
+          [ngClass]="selectedColorPalette"
+          (click)="game.actionDown()"
+        >
           Down
         </button>
       </div>
@@ -67,22 +84,18 @@
   <div class="buttons-exit">
     <button
       class="buttons-exit-reset"
+      [ngClass]="selectedColorPalette"
       (click)="game.actionReset()"
       (click)="resetTimer()"
     >
       RESET
     </button>
-    <button class="buttons-exit-exit" (click)="returnLogin()">EXIT</button>
-  </div>
-  <div>
-    <p>Dark or light mode?</p>
-    <select
-      [(ngModel)]="selectedColorPalette"
-      (change)="changeColorPalette($event)"
+    <button
+      class="buttons-exit-exit"
+      [ngClass]="selectedColorPalette"
+      (click)="returnLogin()"
     >
-      <option *ngFor="let color of allColors" [value]="color">
-        {{ color }}
-      </option>
-    </select>
+      EXIT
+    </button>
   </div>
 </div>

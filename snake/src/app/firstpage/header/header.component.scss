@@ -2,10 +2,17 @@
   display: flex;
   justify-content: center;
   letter-spacing: 35px;
-  color: white;
   &-title {
     font-size: 70px;
     // padding-bottom: 30px;
     margin-top: 10px;
   }
+}
+.normal {
+  background-color: #7b9c01;
+  color: black;
+}
+.high-contrast {
+  background-color: black;
+  color: white;
 }

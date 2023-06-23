@@ -25,10 +25,16 @@
     &-1 {
       border: none;
       font-size: 20px;
-      color: white;
       font-weight: 600;
-      background-color: #7b9c01;
       padding: 15px 20px;
+    }
+    .normal {
+      background-color: #7b9c01;
+      color: black;
+    }
+    .high-contrast {
+      background-color: black;
+      color: white;
     }
   }
   &-up {
@@ -38,10 +44,16 @@
       &-up {
         border: none;
         font-size: 20px;
-        color: white;
         font-weight: 600;
-        background-color: #7b9c01;
         //   padding: 40px;
+      }
+      .normal {
+        background-color: #7b9c01;
+        color: black;
+      }
+      .high-contrast {
+        background-color: black;
+        color: white;
       }
     }
     &-second {
@@ -50,10 +62,16 @@
       &-down {
         border: none;
         font-size: 20px;
-        color: white;
         font-weight: 600;
-        background-color: #7b9c01;
         // padding: 40px;
+      }
+      .normal {
+        background-color: #7b9c01;
+        color: black;
+      }
+      .high-contrast {
+        background-color: black;
+        color: white;
       }
     }
     &-sides {
@@ -62,10 +80,16 @@
       &-all {
         border: none;
         font-size: 20px;
-        color: white;
         font-weight: 600;
-        background-color: #7b9c01;
         // padding: 40px;
+      }
+      .normal {
+        background-color: #7b9c01;
+        color: black;
+      }
+      .high-contrast {
+        background-color: black;
+        color: white;
       }
     }
   }
@@ -76,16 +100,20 @@
     &-reset {
       border: none;
       font-size: 20px;
-      color: white;
       font-weight: 600;
-      background-color: #7b9c01;
     }
     &-exit {
       border: none;
       font-size: 20px;
-      color: white;
       font-weight: 600;
+    }
+    .normal {
       background-color: #7b9c01;
+      color: black;
+    }
+    .high-contrast {
+      background-color: black;
+      color: white;
     }
   }
 }

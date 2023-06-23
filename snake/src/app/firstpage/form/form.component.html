@@ -1,15 +1,27 @@
-<form #form="ngForm" class="form" (ngSubmit)="openGame(form)">
+<form
+  #form="ngForm"
+  class="form"
+  (ngSubmit)="openGame(form)"
+  [ngClass]="selectedColorPalette"
+>
   <div class="form-control">
     <div class="form-control-name">
-      <label class="form-control-name-label" for="name">PLAYER NAME: </label>
+      <label
+        class="form-control-name-label"
+        [ngClass]="selectedColorPalette"
+        for="name"
+        >PLAYER NAME:
+      </label>
       <div
         class="form-control-name-alert"
+        [ngClass]="selectedColorPalette"
         *ngIf="nameField.errors?.['required'] && nameField.touched|| form.submitted && nameField.invalid"
       >
         ENTER YOUR PLAYER NAME
       </div>
       <div
         class="form-control-name-alert"
+        [ngClass]="selectedColorPalette"
         *ngIf="nameField.errors?.['pattern']"
       >
         NO SPECIAL CHARACTERS
@@ -25,24 +37,31 @@
         #nameField="ngModel"
         id="name"
         class="form-control-input-name"
+        [ngClass]="selectedColorPalette"
       />
     </div>
 
-    <div class="form-control-info">
-      <div class="form-control-info-i">
+    <div class="form-control-info" [ngClass]="selectedColorPalette">
+      <div class="form-control-info-i" [ngClass]="selectedColorPalette">
         (letters and numbers only, no punctuacion or special characters)
       </div>
     </div>
-    <div class="form-control-token">
-      <label class="form-control-token-label" for="token">TOKEN: </label>
+    <div class="form-control-token" [ngClass]="selectedColorPalette">
+      <label
+        class="form-control-token-label"
+        [ngClass]="selectedColorPalette"
+        for="token"
+        >TOKEN:
+      </label>
       <div
         class="form-control-token-alert"
+        [ngClass]="selectedColorPalette"
         *ngIf="tokenField.errors?.['required'] && tokenField.touched || form.submitted && tokenField.invalid  "
       >
         ENTER YOUR TOKEN
       </div>
     </div>
-    <div class="form-control-input2">
+    <div class="form-control-input2" [ngClass]="selectedColorPalette">
       <input
         type="number"
         name="token"
@@ -51,12 +70,13 @@
         required
         id="token"
         class="form-control-input2-token"
+        [ngClass]="selectedColorPalette"
       />
     </div>
-
     <div class="form-control-btn">
       <button
         class="form-control-btn-go"
+        [ngClass]="selectedColorPalette"
         [disabled]="!formData.name || !formData.token"
         (click)="openGame(form)"
       >
@@ -71,17 +91,4 @@
       class="form-control-img-snake"
     />
   </div>
-  <div>
-    <p>Dark or light mode?</p>
-    <select (change)="changeColorPalette($event)">
-      <option value="normal">Normal</option>
-      <option value="high-contrast">High Contrast</option>
-    </select>
-  </div>
 </form>
-
-<!-- <select [(ngModel)]="selectedColorPalette" (change)="changeColor($event.target.value)">
-  <option *ngFor="let color of allColors" [value]="color">
-    {{ color }}
-  </option>
-</select> -->

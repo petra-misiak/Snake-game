@@ -16,7 +16,6 @@ export class FormComponent implements OnInit {
 
   formData = { ...this.originalformData };
   public selectedColorPalette: string = 'normal';
-  public allColors = ['lightgreen', 'green'];
 
   @Output() submit = new EventEmitter<string>();
 
@@ -24,24 +23,17 @@ export class FormComponent implements OnInit {
     private _router: Router,
     private playerDataService: PlayerDataService,
     private _route: ActivatedRoute
-  ) {
+  ) {}
+
+  ngOnInit() {
     this._route.params.subscribe((params) => {
-      this.selectedColorPalette = params['colors'] || 'normal';
+      this.selectedColorPalette = params['color'];
     });
   }
-
-  ngOnInit(): void {}
 
   openGame(form: NgForm) {
     this.playerDataService.setUserInfo(form.value.name);
-    this._router.navigate(['/snake-game']);
+    this._router.navigate(['/snake-game', this.selectedColorPalette]);
     form.resetForm();
-  }
-
-  public changeColorPalette(event: any): void {
-    const palette = event.target.value;
-    this._router.navigate(['/login', palette], {
-      relativeTo: this._route,
-    });
   }
 }
