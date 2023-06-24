@@ -9,6 +9,8 @@ import { NgxSnakeModule } from 'ngx-snake';
 import { HeaderComponent } from './firstpage/header/header.component';
 import { FormComponent } from './firstpage/form/form.component';
 import { SnakeComponent } from './secondpage/snake/snake.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FormComponent, SnakeComponent],
   imports: [
@@ -16,6 +18,7 @@ import { SnakeComponent } from './secondpage/snake/snake.component';
     NgxSnakeModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
 
     RouterModule.forRoot([
       { path: 'login', component: FormComponent },

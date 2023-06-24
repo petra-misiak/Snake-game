@@ -1,7 +1,7 @@
 <form
-  #form="ngForm"
+  [formGroup]="formData"
   class="form"
-  (ngSubmit)="openGame(form)"
+  (ngSubmit)="openGame()"
   [ngClass]="selectedColorPalette"
 >
   <div class="form-control">
@@ -15,14 +15,18 @@
       <div
         class="form-control-name-alert"
         [ngClass]="selectedColorPalette"
-        *ngIf="nameField.errors?.['required'] && nameField.touched|| form.submitted && nameField.invalid"
+        *ngIf="
+          (formData.get('name')?.errors?.['required'] &&
+            formData.get('name')?.touched) ||
+          (formData.invalid && formData.get('name')?.touched)
+        "
       >
-        ENTER YOUR PLAYER NAME
+        ENTER YOUR PLAYER NAME&nbsp;
       </div>
       <div
         class="form-control-name-alert"
         [ngClass]="selectedColorPalette"
-        *ngIf="nameField.errors?.['pattern']"
+        *ngIf="formData.get('name')?.errors?.['pattern']"
       >
         NO SPECIAL CHARACTERS
       </div>
@@ -30,11 +34,7 @@
     <div class="form-control-input">
       <input
         type="text"
-        name="name"
-        pattern="[a-zA-Z ]*"
-        [(ngModel)]="formData.name"
-        required
-        #nameField="ngModel"
+        formControlName="name"
         id="name"
         class="form-control-input-name"
         [ngClass]="selectedColorPalette"
@@ -43,7 +43,7 @@
 
     <div class="form-control-info" [ngClass]="selectedColorPalette">
       <div class="form-control-info-i" [ngClass]="selectedColorPalette">
-        (letters and numbers only, no punctuacion or special characters)
+        (letters and numbers only, no punctuation or special characters)
       </div>
     </div>
     <div class="form-control-token" [ngClass]="selectedColorPalette">
@@ -56,7 +56,11 @@
       <div
         class="form-control-token-alert"
         [ngClass]="selectedColorPalette"
-        *ngIf="tokenField.errors?.['required'] && tokenField.touched || form.submitted && tokenField.invalid  "
+        *ngIf="
+        (formData.get('token')?.errors?.['required'] &&
+        formData.get('token')?.touched) ||
+        (formData.invalid && formData.get('token')?.touched)
+        "
       >
         ENTER YOUR TOKEN
       </div>
@@ -64,10 +68,7 @@
     <div class="form-control-input2" [ngClass]="selectedColorPalette">
       <input
         type="number"
-        name="token"
-        #tokenField="ngModel"
-        [(ngModel)]="formData.token"
-        required
+        formControlName="token"
         id="token"
         class="form-control-input2-token"
         [ngClass]="selectedColorPalette"
@@ -77,8 +78,8 @@
       <button
         class="form-control-btn-go"
         [ngClass]="selectedColorPalette"
-        [disabled]="!formData.name || !formData.token"
-        (click)="openGame(form)"
+        [disabled]="formData.invalid"
+        (click)="openGame()"
       >
         GO !!!
       </button>

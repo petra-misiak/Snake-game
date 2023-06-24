@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormData } from '../data/form-data';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlayerDataService } from 'src/app/player-data.service';
@@ -14,7 +14,8 @@ export class FormComponent implements OnInit {
     token: '',
   };
 
-  formData = { ...this.originalformData };
+  formData: FormGroup;
+
   public selectedColorPalette: string = 'normal';
 
   @Output() submit = new EventEmitter<string>();
@@ -22,8 +23,14 @@ export class FormComponent implements OnInit {
   constructor(
     private _router: Router,
     private playerDataService: PlayerDataService,
-    private _route: ActivatedRoute
-  ) {}
+    private _route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.formData = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      token: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
     this._route.params.subscribe((params) => {
@@ -31,9 +38,12 @@ export class FormComponent implements OnInit {
     });
   }
 
-  openGame(form: NgForm) {
-    this.playerDataService.setUserInfo(form.value.name);
-    this._router.navigate(['/snake-game', this.selectedColorPalette]);
-    form.resetForm();
+  openGame() {
+    if (this.formData.valid) {
+      const name = this.formData.value.name;
+      this.playerDataService.setUserInfo(name);
+      this._router.navigate(['/snake-game', this.selectedColorPalette]);
+      this.formData.reset();
+    }
   }
 }
